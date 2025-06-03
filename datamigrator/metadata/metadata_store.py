@@ -295,11 +295,13 @@ class MetadataStore:
     def _get_last_hash_database(self, filename: str) -> Optional[str]:
         """Get last hash from target database."""
         try:
+            from sqlalchemy import text
+
             with self.adapter.engine.connect() as conn:
-                result = conn.execute(
-                    "SELECT file_hash FROM datamigrator_metadata WHERE filename = ?",
-                    (filename,)
-                ).fetchone()
+                query = text(
+                    "SELECT file_hash FROM datamigrator_metadata WHERE filename = :filename"
+                )
+                result = conn.execute(query, {"filename": filename}).fetchone()
                 
                 return result[0] if result else None
                 
@@ -349,14 +351,17 @@ class MetadataStore:
     def _get_import_history_database(self, filename: Optional[str]) -> List[Dict[str, Any]]:
         """Get import history from target database."""
         try:
+            from sqlalchemy import text
+
             with self.adapter.engine.connect() as conn:
                 if filename:
-                    result = conn.execute(
-                        "SELECT * FROM datamigrator_metadata WHERE filename = ? ORDER BY imported_at DESC",
-                        (filename,)
+                    query = text(
+                        "SELECT * FROM datamigrator_metadata WHERE filename = :filename ORDER BY imported_at DESC"
                     )
+                    result = conn.execute(query, {"filename": filename})
                 else:
-                    result = conn.execute("SELECT * FROM datamigrator_metadata ORDER BY imported_at DESC")
+                    query = text("SELECT * FROM datamigrator_metadata ORDER BY imported_at DESC")
+                    result = conn.execute(query)
                 
                 # Convert to list of dictionaries
                 columns = result.keys()
@@ -405,11 +410,13 @@ class MetadataStore:
     def _cleanup_old_records_database(self, cutoff_date: datetime) -> int:
         """Clean up old records from target database."""
         try:
+            from sqlalchemy import text
+
             with self.adapter.engine.connect() as conn:
-                result = conn.execute(
-                    "DELETE FROM datamigrator_metadata WHERE imported_at < ?",
-                    (cutoff_date,)
+                query = text(
+                    "DELETE FROM datamigrator_metadata WHERE imported_at < :cutoff"
                 )
+                result = conn.execute(query, {"cutoff": cutoff_date})
                 deleted_count = result.rowcount
                 conn.commit()
                 
