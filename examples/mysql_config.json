@@ -1,0 +1,12 @@
+{
+  "input_folder": "./sales_data",
+  "engine": "mysql",
+  "connection": "mysql+pymysql://root:password@localhost:3306",
+  "db_name": "sales_db",
+  "batch_size": 5000,
+  "clean_data": true,
+  "infer_schema": true,
+  "overwrite_existing": false,
+  "use_metadata_store": true,
+  "log_level": "INFO"
+} 

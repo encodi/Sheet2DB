@@ -1,0 +1,3 @@
+[console_scripts]
+migrate-data = datamigrator.cli:main
+

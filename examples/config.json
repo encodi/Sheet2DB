@@ -1,0 +1,12 @@
+{
+  "input_folder": "./data",
+  "engine": "postgres",
+  "connection": "postgresql+psycopg2://user:password@localhost:5432",
+  "db_name": "mydb",
+  "batch_size": 2000,
+  "clean_data": true,
+  "infer_schema": true,
+  "overwrite_existing": false,
+  "use_metadata_store": true,
+  "log_level": "INFO"
+} 

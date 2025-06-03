@@ -1,0 +1,12 @@
+{
+  "input_folder": "./analytics_data",
+  "engine": "mongo",
+  "connection": "mongodb://localhost:27017",
+  "db_name": "analytics_db",
+  "batch_size": 1000,
+  "clean_data": true,
+  "infer_schema": false,
+  "overwrite_existing": false,
+  "use_metadata_store": false,
+  "log_level": "INFO"
+} 
