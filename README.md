@@ -4,6 +4,8 @@
 
 DataMigrator is a powerful Python library that automates the process of migrating data from CSV and Excel files to various database systems. It provides intelligent schema inference, data cleaning, and supports multiple database engines including PostgreSQL, MySQL, SQL Server, and MongoDB.
 
+**Community Experiment**: This repository is an experimento for the community to participate, to try to create a full production ready working tool using AI only.
+
 ## Features
 
 - 🚀 **Multi-Database Support**: PostgreSQL, MySQL, SQL Server, MongoDB
@@ -248,9 +250,8 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## Support
 
-- 📧 Email: support@datamigrator.com
+- 📧 Email: encodari@gmail.com
 - 🐛 Issues: [GitHub Issues](https://github.com/yourusername/datamigrator/issues)
-- 📖 Documentation: [Full Documentation](https://datamigrator.readthedocs.io)
 
 ## Changelog
 
